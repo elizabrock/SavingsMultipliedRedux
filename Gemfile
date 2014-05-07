@@ -18,3 +18,18 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 group :development do
   gem 'spring',        group: :development
 end
+
+group :test, :development do
+   gem 'rspec-rails'
+   gem 'rspec'
+end
+
+   # gem 'cucumber-rails'
+   # gem 'database_cleaner'
+   # gem 'email_spec'
+   # gem 'fabrication'
+   # gem 'letter_opener'
+   # gem 'poltergeist'
+   # gem 'shoulda-matchers'
+   # gem 'webmock'
+   # gem 'vcr'
