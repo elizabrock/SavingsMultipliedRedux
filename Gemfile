@@ -26,11 +26,11 @@ group :test, :development do
    gem 'rspec-rails'
    gem 'rspec'
    gem 'shoulda-matchers'
+   gem 'webmock'
 end
 
    # gem 'email_spec'
    # gem 'fabrication'
    # gem 'letter_opener'
    # gem 'poltergeist'
-   # gem 'webmock'
    # gem 'vcr'
