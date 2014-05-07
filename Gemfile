@@ -21,12 +21,12 @@ group :development do
 end
 
 group :test, :development do
+   gem 'cucumber-rails', require: false
+   gem 'database_cleaner'
    gem 'rspec-rails'
    gem 'rspec'
 end
 
-   # gem 'cucumber-rails'
-   # gem 'database_cleaner'
    # gem 'email_spec'
    # gem 'fabrication'
    # gem 'letter_opener'
