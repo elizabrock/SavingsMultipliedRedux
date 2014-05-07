@@ -25,12 +25,12 @@ group :test, :development do
    gem 'database_cleaner'
    gem 'rspec-rails'
    gem 'rspec'
+   gem 'shoulda-matchers'
 end
 
    # gem 'email_spec'
    # gem 'fabrication'
    # gem 'letter_opener'
    # gem 'poltergeist'
-   # gem 'shoulda-matchers'
    # gem 'webmock'
    # gem 'vcr'
