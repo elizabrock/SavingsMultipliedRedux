@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
+  devise_for :users
   root to: "home#index"
   resources :pages, :only => :show
+  resources :users, :only => :show
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)

@@ -1,0 +1,17 @@
+-# This is where the owl icons for the children will be set up.
+- small = (local_assigns.has_key? :half_size and half_size)
+- size = (small)? "32" : "64"
+- f_images = ["owls/owl_bright_pink_#{size}.png", "owls/owl_light_pink_#{size}.png"]
+- m_images = ["owls/owl_bright_blue_#{size}.png", "owls/owl_light_blue_#{size}.png"]
+
+%span.genders{ :class => child_configuration.genders }
+  - child_configuration.genders.chars.collect do |gender|
+    %span{ class: gender }
+    - image_url = (gender == "f")? f_images.sample : m_images.sample
+    = image_tag image_url, :class => ((small) ? "small_gender" : "large_gender"), :alt => gender
+    %span.gender
+      - if gender == 'f'
+        girl
+      - elsif gender == 'm'
+        boy
+

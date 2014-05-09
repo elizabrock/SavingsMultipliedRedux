@@ -1,0 +1,12 @@
+%h2 Sign up
+= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
+  = f.input :first_name
+  = f.input :last_name
+  = f.input :email
+  = f.input :email_is_used_with_paypal, :label => "This is the email I use with PayPal", :hint => "required so that we can send paypal invoices for listing payment"
+  = f.input :relationship_to_children_id, :label => "I am the", :collection => RelationshipToChildren.all
+  = f.input :child_configuration_id,:label => "darling children", :collection => ChildConfiguration.all
+  = f.input :terms_accepted, :label => "I accept the <a href='/pages/termsandconditions'>terms and conditions</a>".html_safe
+  = f.input :password
+  = f.input :password_confirmation
+  = f.submit "Sign up"

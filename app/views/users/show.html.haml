@@ -1,0 +1,7 @@
+%h1= current_user.full_name
+
+%p
+  #{current_user.relationship_to_children.name} to #{current_user.child_configuration.number_of_children} darling children
+
+.child_icons
+  = render current_user.child_configuration

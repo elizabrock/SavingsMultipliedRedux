@@ -6,6 +6,15 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
+    %ul.devise_navigation
+      - if user_signed_in?
+        %li
+          You are signed in as
+          = link_to(current_user.full_name, main_app.user_path(current_user))
+        %li= link_to('sign out', destroy_user_session_path)
+      - else
+        %li= link_to("sign in", new_user_session_path)
+        %li= link_to("sign up", new_user_registration_path)
     .notice= notice
     .alert= alert
     = yield
