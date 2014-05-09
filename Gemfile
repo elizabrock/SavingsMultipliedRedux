@@ -2,12 +2,14 @@ ruby '2.1.1'
 #ruby-gemset=savingsmultplied
 source 'https://rubygems.org'
 
+gem 'activeadmin', github: 'gregbell/active_admin'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'haml-rails'
 gem 'jbuilder', '~> 2.0'
 gem 'jquery-rails'
 gem 'pg'
 gem 'rails'
+gem 'redcarpet'
 gem 'sass-rails', '~> 4.0.3'
 gem 'turbolinks'
 gem 'uglifier', '>= 1.3.0'
@@ -21,16 +23,17 @@ group :development do
 end
 
 group :test, :development do
-   gem 'rspec-rails'
-   gem 'rspec'
-   gem 'shoulda-matchers'
-   gem 'webmock'
+  gem 'capybara'
+  gem 'database_cleaner'
+  gem 'fabrication'
+  gem 'launchy'
+  gem 'poltergeist'
+  gem 'rspec-rails'
+  gem 'rspec'
+  gem 'shoulda-matchers'
+  gem 'webmock'
 end
 
-   # gem 'cucumber-rails'
-   # gem 'database_cleaner'
    # gem 'email_spec'
-   # gem 'fabrication'
    # gem 'letter_opener'
-   # gem 'poltergeist'
    # gem 'vcr'

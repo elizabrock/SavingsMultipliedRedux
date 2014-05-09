@@ -1,0 +1,8 @@
+- if @page
+  - content_for(:html_title){ "#{@page.title} on Savings Multiplied" }
+  %h2= @page.title
+  :markdown
+    #{@page.content}
+- else
+  %h2 Page Not Found
+  The page could not be found.
