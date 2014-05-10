@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    user_params = [:first_name, :last_name, :relationship_to_children_id, :child_configuration_id, :terms_accepted, :email_is_used_with_paypal, :bio]
+    user_params = [:first_name, :last_name, :relationship_to_children_id, :child_configuration_id, :terms_accepted, :email_is_used_with_paypal, :bio, :profile_image]
     devise_parameter_sanitizer.for(:sign_up) << user_params
     devise_parameter_sanitizer.for(:account_update) << user_params
   end

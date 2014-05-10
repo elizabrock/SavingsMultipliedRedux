@@ -1,5 +1,4 @@
-.profile_image
-  %img.profile_image
+.profile_image= image_tag @user.profile_image_url, class: "profile"
 
 .profile_details
   %h1= @user.full_name

@@ -7,7 +7,7 @@
     = f.input :bio
     = f.input :relationship_to_children_id, label: "I am the", collection: RelationshipToChildren.all
     = f.input :child_configuration_id, label: "darling children", collection: ChildConfiguration.all
-    -# = f.input :profile_image
+    = f.input :profile_image, label: "Profile Image"
   %fieldset
     %legend Your Account Details
     = f.input :email

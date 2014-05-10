@@ -3,6 +3,7 @@ ruby '2.1.1'
 source 'https://rubygems.org'
 
 gem 'activeadmin', github: 'gregbell/active_admin'
+gem 'carrierwave'
 gem 'coffee-rails', '~> 4.0.0'
 gem 'haml-rails'
 gem 'jbuilder', '~> 2.0'

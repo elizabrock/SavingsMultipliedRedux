@@ -39,13 +39,13 @@ feature "User Edits Profile" do
     page.body.should include "ally@mcmarried.example.com"
   end
   scenario "happy path, with photo upload" do
-    pending "setting up carrierwave"
     click_link "Edit My Profile"
-    attach "ally.jpg", to: "Profile Image"
+    attach_file "Profile Image", "spec/support/files/ally.jpg"
+    fill_in "Current Password", with: "myawfulpassword"
     click_button "Update My Profile"
     page.should have_content "Your profile has been updated."
-    click_link "Ally M."
-    find("img.profile")["href"].should  match("ally.jpg")
+    click_link "Sally H."
+    find("img.profile")["src"].should include("ally.jpg")
   end
   scenario "happy path, changing password" do
     click_link "Edit My Profile"
