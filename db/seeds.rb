@@ -22,3 +22,33 @@ ChildConfiguration::POSSIBLE_CONFIGURATIONS.each do |pair|
     end
   end
 end
+
+ItemCondition::POSSIBLE_CONDITIONS.each_with_index do |name, i|
+  unless ItemCondition.find_by_name(name) then
+    ItemCondition.create( :name => name)
+  end
+end
+
+Season::POSSIBLE_SEASONS.each_with_index do |name, i|
+  unless Season.find_by_name(name) then
+    Season.create!(:name => name)
+  end
+end
+
+ClothingSize::POSSIBLE_SIZES.each_with_index do |name, i|
+  unless ClothingSize.find_by_name(name) then
+    ClothingSize.create!(:name => name)
+  end
+end
+
+Brand::SAMPLE_BRANDS.each_with_index do |name, i|
+  unless Brand.find_by_name(name) then
+    Brand.create!(:name => name)
+  end
+end
+
+ClothingType::SAMPLE_TYPES.each_with_index do |name, i|
+  unless ClothingType.find_by_name(name) then
+    ClothingType.create!(:name => name)
+  end
+end
