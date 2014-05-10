@@ -8,6 +8,12 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:sign_up) << [:first_name, :last_name, :relationship_to_children_id, :child_configuration_id, :terms_accepted, :email_is_used_with_paypal]
+    user_params = [:first_name, :last_name, :relationship_to_children_id, :child_configuration_id, :terms_accepted, :email_is_used_with_paypal, :bio]
+    devise_parameter_sanitizer.for(:sign_up) << user_params
+    devise_parameter_sanitizer.for(:account_update) << user_params
+  end
+
+  def after_sign_out_path_for(resource_or_scope)
+    new_user_session_path
   end
 end

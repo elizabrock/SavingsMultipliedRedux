@@ -33,8 +33,8 @@ feature "user signs up" do
     click_link "Eliza B."
     page.should have_css("h1,h2,h3", text: "Eliza B.")
     page.should have_content "aunt"
-    all("span.genders .m").should be
-    all("span.genders .f").count.should == 2
+    all(".child_icons .m").should be
+    all(".child_icons .f").count.should == 2
   end
 
   scenario "Registration errors" do

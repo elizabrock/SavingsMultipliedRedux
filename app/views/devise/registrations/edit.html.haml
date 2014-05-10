@@ -1,0 +1,20 @@
+%h2 Edit Your Profile
+= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, multipart: true }) do |f|
+  %fieldset
+    %legend Your Public Profile
+    = f.input :first_name
+    = f.input :last_name
+    = f.input :bio
+    = f.input :relationship_to_children_id, label: "I am the", collection: RelationshipToChildren.all
+    = f.input :child_configuration_id, label: "darling children", collection: ChildConfiguration.all
+    -# = f.input :profile_image
+  %fieldset
+    %legend Your Account Details
+    = f.input :email
+    = f.input :email_is_used_with_paypal, label: "This is the email I use with PayPal", hint: "required so that we can send paypal invoices for listing payment"
+  %fieldset
+    %legend (Optional) Change your password
+    = f.input :current_password, label: "Current Password"
+    = f.input :password, hint: "leave blank if you don't want to change your password"
+    = f.input :password_confirmation, label: "Password Confirmation"
+  = f.submit "Update My Profile"

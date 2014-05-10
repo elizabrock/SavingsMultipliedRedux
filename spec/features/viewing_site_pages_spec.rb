@@ -11,7 +11,6 @@ feature "Users view site pages" do
     page.should have_content("Isn't life grand")
   end
   scenario "viewing a page that exists, as a regular user" do
-    pending "user login"
     login_as(:user)
     visit page_url
     page.should have_content("Isn't life grand")
@@ -26,7 +25,6 @@ feature "Users view site pages" do
     page.should have_content("The page could not be found.")
   end
   scenario "viewing a page that does not exist, as a regular user" do
-    pending "user login"
     login_as(:user)
     visit '/pages/no_world'
     page.should have_content("The page could not be found.")
