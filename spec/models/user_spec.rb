@@ -9,5 +9,6 @@ describe User do
     it { should validate_presence_of(:child_configuration_id) }
     it { should validate_acceptance_of(:terms_accepted) }
     it { should validate_acceptance_of(:email_is_used_with_paypal).with_message("must be the email you use with PayPal") }
+    it { should have_many :auctions }
   end
 end

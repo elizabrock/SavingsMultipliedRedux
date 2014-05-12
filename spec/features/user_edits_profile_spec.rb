@@ -79,4 +79,9 @@ feature "User Edits Profile" do
     click_button "Sign in"
     page.should have_content("Invalid email or password.")
   end
+  scenario "edit link isn't shown on others' profiles" do
+    other_user = Fabricate(:user, first_name: "Bob")
+    visit user_path(other_user)
+    page.should have_no_content("Edit My Profile")
+  end
 end

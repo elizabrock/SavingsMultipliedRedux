@@ -8,13 +8,13 @@ module Features
         fill_in 'Password*', with: "myawfulpassword"
         click_button 'Login'
       else
-        visit root_path
-        click_link "sign in"
+        visit new_user_session_path unless current_path == new_user_session_path
         fill_in 'Email', with: user.email
         fill_in 'Password', with: "myawfulpassword"
         click_button 'Sign in'
       end
       page.should have_content("Signed in successfully.")
+      user
     end
   end
 end

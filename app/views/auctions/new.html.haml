@@ -1,0 +1,16 @@
+%h1 New Auction
+
+= simple_form_for(@auction, :html => { :multipart => true }) do |f|
+  = f.input :title
+  = f.input :starting_price, label: "Starting Price"
+  = f.association :child_configurations, label: "Set Type", as: :check_boxes, collection: ChildConfiguration.all
+  = f.input :clothing_condition_id, label: "Condition", collection: ClothingCondition.all
+  = f.input :season_id, label: "Season", collection: Season.all
+  = f.association :clothing_sizes, label: "Sizes", as: :check_boxes, collection: ClothingSize.all
+  = f.input :brand_id, collection: Brand.all
+  = f.input :clothing_type_id, collection: ClothingType.all, label: "Clothing Type"
+  = f.input :description
+  = f.input :item_photo, label: "Item Photo"
+  -# = f.submit "Preview my listing"
+  = f.submit "START AUCTION"
+

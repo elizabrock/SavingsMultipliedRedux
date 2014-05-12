@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 feature "user signs up" do
-  # In order to place bids or list listings
+  # In order to place bids or list auctions
   # As a guest
   # I want to sign up
 

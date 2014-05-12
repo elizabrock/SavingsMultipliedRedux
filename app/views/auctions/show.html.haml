@@ -1,0 +1,26 @@
+.auction
+  %h2= @auction.title
+
+  = image_tag @auction.item_photo_url, class: "item_photo"
+
+  %h3 Description
+  %p= @auction.description
+
+  %b Posted By:
+  = link_to @auction.user.full_name, @auction.user
+
+  %b Sizes:
+  = @auction.clothing_sizes.map(&:name).join(', ')
+
+  %b Condition:
+  = @auction.clothing_condition.name
+
+  %b Season:
+  = @auction.season.name
+
+  %b Brand:
+  = @auction.brand.name
+
+  .child_icons
+    - @auction.child_configurations.each do |config|
+      = render config

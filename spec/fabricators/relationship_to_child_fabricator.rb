@@ -1,3 +1,3 @@
 Fabricator(:relationship_to_children) do
-  name "Auntie"
+  name { sequence(:name) { |i| "Auntie#{i}" } }
 end

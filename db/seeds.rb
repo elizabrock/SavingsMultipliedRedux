@@ -52,3 +52,18 @@ ClothingType::SAMPLE_TYPES.each_with_index do |name, i|
     ClothingType.create!(:name => name)
   end
 end
+
+ChildConfiguration.all.each do |child_configuration|
+  listing = Fabricate(:listing,
+                  :title => "#{child_configuration.name} listing",
+                  :description => "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis quam quis erat adipiscing molestie. Aliquam non ante justo. Phasellus feugiat nulla nec ante mattis viverra. Quisque tristique elementum tempor. Quisque accumsan odio a leo sagittis nec cursus lorem tempus. Aliquam ut nisi eu odio molestie pulvinar in ut dolor. Sed imperdiet malesuada neque volutpat consequat. Nulla scelerisque venenatis nisi vel placerat. Aliquam augue orci, placerat in cursus sit amet, dapibus vel neque. Quisque hendrerit mattis metus et ultricies. ",
+                  :starting_price => "10.00",
+                  :item_condition => ItemCondition.all.sample,
+                  :child_configurations => [child_configuration],
+                  :clothing_type => ClothingType.all.sample,
+                  :brand => Brand.all.sample,
+                  :owner => (User.first || Fabricate(:user, :relationship_to_children => RelationshipToChildren.all.sample)),
+                  :season => Season.all.sample,
+                  :clothing_sizes => [ClothingSize.all.sample]
+                  )
+end

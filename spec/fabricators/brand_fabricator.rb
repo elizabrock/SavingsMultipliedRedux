@@ -1,0 +1,2 @@
+Fabricator(:brand) do
+end

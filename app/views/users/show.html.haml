@@ -10,3 +10,10 @@
 .child_information
   %p #{@user.relationship_to_children.name} to #{@user.child_configuration.number_of_children} darling children
   = render @user.child_configuration
+
+.auctions.current
+  %h3
+    #{@user.first_name}'s Current Listings:
+  %ul
+    - @user.auctions.each do |auction|
+      %li= link_to auction.title, auction_path(auction)

@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
 
   belongs_to :relationship_to_children
   belongs_to :child_configuration
+  has_many :auctions
 
   def full_name
     "#{first_name} #{last_name[0,1]}."
