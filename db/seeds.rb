@@ -7,25 +7,24 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
-RelationshipToChildren::POSSIBLE_RELATIONSHIPS.each do |relationship_name|
-  RelationshipToChildren.find_or_create_by_name(relationship_name)
+RelationshipToChildren::DEFAULT_RELATIONSHIPS.each do |relationship_name|
+  RelationshipToChildren.find_or_create_by(name: relationship_name)
 end
 
 ChildConfiguration::POSSIBLE_CONFIGURATIONS.each do |pair|
   type = pair[0].to_s
   configurations = pair[1]
   configurations.each do |configuration|
-    unless ChildConfiguration.find_by_siblings_type_and_genders(type, configuration) then
-      ChildConfiguration.create( :display_position => display_order,
-                                 :siblings_type => type,
+    unless ChildConfiguration.find_by(siblings_type: type, genders: configuration) then
+      ChildConfiguration.create( :siblings_type => type,
                                  :genders => configuration)
     end
   end
 end
 
-ItemCondition::POSSIBLE_CONDITIONS.each_with_index do |name, i|
-  unless ItemCondition.find_by_name(name) then
-    ItemCondition.create( :name => name)
+ClothingCondition::POSSIBLE_CONDITIONS.each_with_index do |name, i|
+  unless ClothingCondition.find_by_name(name) then
+    ClothingCondition.create( :name => name)
   end
 end
 
@@ -54,15 +53,15 @@ ClothingType::SAMPLE_TYPES.each_with_index do |name, i|
 end
 
 ChildConfiguration.all.each do |child_configuration|
-  listing = Fabricate(:listing,
+  listing = Fabricate(:auction,
                   :title => "#{child_configuration.name} listing",
                   :description => "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec quis quam quis erat adipiscing molestie. Aliquam non ante justo. Phasellus feugiat nulla nec ante mattis viverra. Quisque tristique elementum tempor. Quisque accumsan odio a leo sagittis nec cursus lorem tempus. Aliquam ut nisi eu odio molestie pulvinar in ut dolor. Sed imperdiet malesuada neque volutpat consequat. Nulla scelerisque venenatis nisi vel placerat. Aliquam augue orci, placerat in cursus sit amet, dapibus vel neque. Quisque hendrerit mattis metus et ultricies. ",
                   :starting_price => "10.00",
-                  :item_condition => ItemCondition.all.sample,
+                  :clothing_condition => ClothingCondition.all.sample,
                   :child_configurations => [child_configuration],
                   :clothing_type => ClothingType.all.sample,
                   :brand => Brand.all.sample,
-                  :owner => (User.first || Fabricate(:user, :relationship_to_children => RelationshipToChildren.all.sample)),
+                  :user => (User.first || Fabricate(:user, :relationship_to_children => RelationshipToChildren.all.sample)),
                   :season => Season.all.sample,
                   :clothing_sizes => [ClothingSize.all.sample]
                   )
