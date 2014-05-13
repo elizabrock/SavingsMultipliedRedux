@@ -22,6 +22,7 @@ class Auction < ActiveRecord::Base
   before_create :set_ends_at
 
   scope :active, ->{ where("ends_at > ?", Time.now) }
+  scope :search_by, ->(term){ where("title like ?", "%#{term}%") }
 
   private
 

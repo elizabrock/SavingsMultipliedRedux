@@ -1,6 +1,8 @@
 %ul.breadcrumb_navigation
   %li= link_to "All", auctions_path
 
+= render partial: "auction_search"
+
 - if @auctions.empty?
 - else
   #auctions
