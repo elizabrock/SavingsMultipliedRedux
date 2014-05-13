@@ -17,6 +17,7 @@
         %li= link_to("sign up", new_user_registration_path)
     %ul#main_navigation
       %li= link_to "Sell", new_auction_path
+      %li= link_to "Buy", auctions_path
     .notice= notice
     .alert= alert
     = yield

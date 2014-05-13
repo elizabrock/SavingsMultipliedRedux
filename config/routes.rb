@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   devise_for :users
 
-  resources :auctions, only: [:new, :create, :show]
+  resources :auctions, except: [:edit, :update, :destroy]
   resources :pages, :only => :show
   resources :users, :only => :show
 

@@ -1,4 +1,10 @@
 class AuctionsController < ApplicationController
+  skip_before_filter :authenticate!, only: [:index, :show]
+
+  def index
+    @auctions = Auction.active.all
+  end
+
   def show
     @auction = Auction.find(params[:id])
   end

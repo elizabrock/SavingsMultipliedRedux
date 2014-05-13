@@ -18,4 +18,14 @@ class Auction < ActiveRecord::Base
   validates_presence_of :brand, :clothing_condition, :clothing_type, :description, :item_photo, :title, :user
   validates_numericality_of :starting_price, greater_than: 0
   validates :clothing_size_ids, :child_configuration_ids, :collection_size => { :minimum => 1 }
+
+  before_create :set_ends_at
+
+  scope :active, ->{ where("ends_at > ?", Time.now) }
+
+  private
+
+  def set_ends_at
+    self.ends_at ||= 10.days.from_now
+  end
 end
