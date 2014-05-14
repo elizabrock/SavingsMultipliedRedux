@@ -24,15 +24,15 @@ feature "User views all current auctions" do
     visit '/'
     click_link "Buy"
     page.should have_css(".breadcrumb_navigation a", text: "All")
-    page.should have_content "bg twin clothes"
-    page.should have_content "gg twin clothes"
-    page.should have_content "bbb triplet clothes"
+    page.should have_link "bg twin clothes"
+    page.should have_link "gg twin clothes"
+    page.should have_link "bbb triplet clothes"
     page.should_not have_content "closed bg twin clothes"
 
     visit current_path # reloads the current url, to verify that the path reflects the selections
-    page.should have_content "bg twin clothes"
-    page.should have_content "gg twin clothes"
-    page.should have_content "bbb triplet clothes"
+    page.should have_link "bg twin clothes"
+    page.should have_link "gg twin clothes"
+    page.should have_link "bbb triplet clothes"
     page.should_not have_content "closed bg twin clothes"
   end
 

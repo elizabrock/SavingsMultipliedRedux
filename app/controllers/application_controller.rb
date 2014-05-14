@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
 
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :authenticate!, unless: :devise_controller?
+  before_action :load_auction_search
 
   protected
 
@@ -22,5 +23,9 @@ class ApplicationController < ActionController::Base
     unless current_admin_user
       authenticate_user!
     end
+  end
+
+  def load_auction_search
+    @auction_search = AuctionSearch.new(params[:auction_search])
   end
 end

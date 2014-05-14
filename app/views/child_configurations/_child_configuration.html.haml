@@ -4,11 +4,11 @@
 - f_images = ["owls/owl_bright_pink_#{size}.png", "owls/owl_light_pink_#{size}.png"]
 - m_images = ["owls/owl_bright_blue_#{size}.png", "owls/owl_light_blue_#{size}.png"]
 
-.child_icons{ :class => child_configuration.genders }
+.child_icons{ class: child_configuration.genders }
   - child_configuration.genders.chars.collect do |gender|
     %span{ class: gender }
     - image_name = (gender == "f")? f_images.sample : m_images.sample
-    = image_tag image_name, :class => ((small) ? "small_gender" : "large_gender"), :alt => gender
+    = image_tag image_name, class: ((small) ? "small_gender" : "large_gender"), alt: gender
     %span.gender
       - if gender == 'f'
         girl

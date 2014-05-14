@@ -18,6 +18,7 @@
     %ul#main_navigation
       %li= link_to "Sell", new_auction_path
       %li= link_to "Buy", auctions_path
+      %li= render partial: "auction_searches/search_term_form"
     .notice= notice
     .alert= alert
     = yield

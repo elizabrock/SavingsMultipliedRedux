@@ -38,7 +38,6 @@ feature "User searches auctions" do
     page.should_not have_content "bg twin clothes bar"
     page.should_not have_content "bg sibling clothes bar"
 
-    pending "filter implementation"
     click_link "twins"
     page.should have_link "bg twin clothes foo"
     page.should have_link "gg twin clothes foo"
@@ -79,28 +78,27 @@ feature "User searches auctions" do
 
     visit '/'
     click_link "Buy"
-    pending "filter implementation"
     click_link "twins"
     click_link "bg"
 
     fill_in "Search term", with: "strawberry"
-    click_button "search"
+    click_button "Search"
     page.should have_css(".auction a", text: "strawberry hats")
 
     fill_in "Search term", with: "strawberry hats"
-    click_button "search"
+    click_button "Search"
     page.should have_css(".auction a", text: "strawberry hats")
 
     fill_in "Search term", with: "cherry"
-    click_button "search"
+    click_button "Search"
     page.should have_css(".auction a", text: "banana colored shoes")
 
     fill_in "Search term", with: "other"
-    click_button "search"
+    click_button "Search"
     page.should have_css(".auction a", text: "strawberry hats")
 
     fill_in "Search term", with: "erin"
-    click_button "search"
+    click_button "Search"
     page.should have_css(".auction a", text: "banana colored shoes")
   end
 end

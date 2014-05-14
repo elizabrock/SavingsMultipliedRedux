@@ -2,7 +2,7 @@ class AuctionsController < ApplicationController
   skip_before_filter :authenticate!, only: [:index, :show]
 
   def index
-    @auctions = Auction.active.search_by(params[:search_term]).all
+    @auctions = @auction_search.auctions
   end
 
   def show

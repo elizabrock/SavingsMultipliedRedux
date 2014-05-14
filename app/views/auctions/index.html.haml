@@ -1,7 +1,13 @@
 %ul.breadcrumb_navigation
   %li= link_to "All", auctions_path
+  - if @auction_search.siblings_type
+    %li= link_to @auction_search.siblings_type, auctions_path( @auction_search.to_hash )
+  - if @auction_search.child_configuration
+    %li
+      = link_to auctions_path do
+        = render @auction_search.child_configuration
 
-= render partial: "auction_search"
+= render @auction_search
 
 - if @auctions.empty?
 - else
