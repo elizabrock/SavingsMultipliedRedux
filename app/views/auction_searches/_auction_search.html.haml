@@ -1,5 +1,6 @@
 #auction_search_sidebar
   = simple_form_for @auction_search, url: auctions_path, html: { method: :get } do |f|
+    = f.input :sort_by, :as => :hidden
     - if auction_search.needs_siblings_type?
       %h2 I'm shopping for:
       %hr

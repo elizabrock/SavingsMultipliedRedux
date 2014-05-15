@@ -1,7 +1,7 @@
 class AuctionSearch
   include ActiveModel::Model
 
-  attr_accessor :brand_ids, :clothing_condition_id, :child_configuration_id, :child_genders, :clothing_size_ids, :clothing_type_ids, :season_ids, :search_term, :siblings_type
+  attr_accessor :brand_ids, :clothing_condition_id, :child_configuration_id, :child_genders, :clothing_size_ids, :clothing_type_ids, :season_ids, :search_term, :siblings_type, :sort_by
 
   def initialize(params = {})
     return unless params.is_a? Hash
@@ -12,10 +12,10 @@ class AuctionSearch
 
   def compact(value)
     if value.is_a? String
-      value.blank? ? nil : value
+      value.blank? ? nil : value.gsub(/\[|\]/,'').split(/,/).map(&:to_i)
     else
       value = value.delete_if(&:blank?)
-      value.empty? ? nil : value
+      value.empty? ? nil : value.map(&:to_i)
     end
   end
 
@@ -97,6 +97,15 @@ class AuctionSearch
     if search_term.present?
       q = "%#{search_term.gsub(' ', '%').downcase}%"
       composed_scope = composed_scope.joins(:brand).joins(:user).where("LOWER(brands.name) LIKE :q OR LOWER(title) LIKE :q OR LOWER(description) LIKE :q OR LOWER(users.first_name) LIKE :q OR LOWER(users.last_name) LIKE :q", :q => q)
+    end
+
+    case sort_by
+    when "Price"
+      # composed_scope = composed_scope.sort{|a,b| a.buy_now_price <=> b.buy_now_price}
+    when "Title"
+      composed_scope = composed_scope.order("title ASC")
+    else
+      composed_scope = composed_scope.order("ends_at ASC")
     end
 
     composed_scope.uniq

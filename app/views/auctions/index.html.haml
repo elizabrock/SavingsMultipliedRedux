@@ -7,6 +7,8 @@
       = link_to auctions_path(@auction_search.to_hash), title: @auction_search.child_configuration.genders do
         = render @auction_search.child_configuration
 
+= render 'auction_searches/auction_sort'
+
 = render @auction_search
 
 - if @auctions.empty?
