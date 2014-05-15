@@ -14,12 +14,13 @@ Setup
     2. Change any database settings in config/database.yml (*NOT* the example file) that are necessary for your machine.
 
 * Database creation
+    1. `rake db:create:all`
+    2. `rake db:migrate`
 * Database initialization
+    1. `rake db:seed`
 * How to run the test suite
+    1. `rake`
 * Services (job queues, cache servers, search engines, etc.)
+    * N/A
 * Deployment instructions
-
-
-
-Instructions
-============
+    * N/A yet
