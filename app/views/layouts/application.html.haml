@@ -6,19 +6,20 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
-    %ul#devise_navigation
-      - if user_signed_in?
-        %li
-          You are signed in as
-          = link_to(current_user.full_name, main_app.user_path(current_user))
-        %li= link_to('sign out', destroy_user_session_path, method: :delete)
-      - else
-        %li= link_to("sign in", new_user_session_path)
-        %li= link_to("sign up", new_user_registration_path)
-    %ul#main_navigation
-      %li= link_to "Sell", new_auction_path
-      %li= link_to "Buy", auctions_path
-      %li= render partial: "auction_searches/search_term_form"
+    %header
+      %ul#devise_navigation
+        - if user_signed_in?
+          %li
+            You are signed in as
+            = link_to(current_user.full_name, main_app.user_path(current_user))
+          %li= link_to('sign out', destroy_user_session_path, method: :delete)
+        - else
+          %li= link_to("sign in", new_user_session_path)
+          %li= link_to("sign up", new_user_registration_path)
+      %ul#main_navigation
+        %li= link_to "Sell", new_auction_path
+        %li= link_to "Buy", auctions_path
+        %li= render partial: "auction_searches/search_term_form"
     .notice= notice
     .alert= alert
     = yield

@@ -29,8 +29,10 @@ feature "User searches auctions" do
     active_auctions
     visit '/'
     click_link "Buy"
-    fill_in "Search", with: "foo"
-    click_button "Search"
+    within "header" do
+      fill_in "Search", with: "foo"
+      click_button "Search"
+    end
 
     page.should have_link "bg twin clothes foo"
     page.should have_link "gg twin clothes foo"
@@ -57,8 +59,10 @@ feature "User searches auctions" do
     active_auctions
     visit '/'
     click_link "Buy"
-    fill_in "Search", with: "foo"
-    click_button "Search"
+    within "header" do
+      fill_in "Search", with: "foo"
+      click_button "Search"
+    end
     # This causes an error if it appears more than once:
     find("a", text: "gg sibling clothes foo")
   end
@@ -81,24 +85,34 @@ feature "User searches auctions" do
     click_link "twins"
     click_link "bg"
 
-    fill_in "Search term", with: "strawberry"
-    click_button "Search"
+    within "#auction_search_sidebar" do
+      fill_in "Search term", with: "strawberry"
+      click_button "Search"
+    end
     page.should have_css(".auction a", text: "strawberry hats")
 
-    fill_in "Search term", with: "strawberry hats"
-    click_button "Search"
+    within "#auction_search_sidebar" do
+      fill_in "Search term", with: "strawberry hats"
+      click_button "Search"
+    end
     page.should have_css(".auction a", text: "strawberry hats")
 
-    fill_in "Search term", with: "cherry"
-    click_button "Search"
+    within "#auction_search_sidebar" do
+      fill_in "Search term", with: "cherry"
+      click_button "Search"
+    end
     page.should have_css(".auction a", text: "banana colored shoes")
 
-    fill_in "Search term", with: "other"
-    click_button "Search"
+    within "#auction_search_sidebar" do
+      fill_in "Search term", with: "other"
+      click_button "Search"
+    end
     page.should have_css(".auction a", text: "strawberry hats")
 
-    fill_in "Search term", with: "erin"
-    click_button "Search"
+    within "#auction_search_sidebar" do
+      fill_in "Search term", with: "erin"
+      click_button "Search"
+    end
     page.should have_css(".auction a", text: "banana colored shoes")
   end
 end

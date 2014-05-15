@@ -1,8 +1,7 @@
 class AuctionSearch
   include ActiveModel::Model
 
-  attr_accessor :child_configuration_id, :child_genders
-  attr_accessor :search_term, :siblings_type
+  attr_accessor :brand_ids, :clothing_condition_id, :child_configuration_id, :child_genders, :clothing_size_ids, :clothing_type_ids, :season_ids, :search_term, :siblings_type
 
   def initialize(params = {})
     return unless params.is_a? Hash
@@ -11,8 +10,42 @@ class AuctionSearch
     end
   end
 
-  def needs_siblings_type?
-    !(child_configuration_id || siblings_type)
+  def compact(value)
+    if value.is_a? String
+      value.blank? ? nil : value
+    else
+      value = value.delete_if(&:blank?)
+      value.empty? ? nil : value
+    end
+  end
+
+  def brand_ids=(value)
+    @brand_ids = compact(value)
+  end
+
+  def clothing_condition_id=(value)
+    @clothing_condition_id = compact(value)
+  end
+
+  def clothing_size_ids=(value)
+    @clothing_size_ids = compact(value)
+  end
+
+  def clothing_type_ids=(value)
+    @clothing_type_ids = compact(value)
+  end
+
+  def season_ids=(value)
+    @season_ids = compact(value)
+  end
+
+  def child_configuration
+    if child_configuration_id.present?
+      @child_configuration = ChildConfiguration.find(child_configuration_id)
+    elsif @siblings_type and @child_genders
+      @child_configuration = ChildConfiguration.where(siblings_type: params[:siblings_type], genders: params[:genders]).first
+    end
+    @child_configuration
   end
 
   def needs_child_genders?
@@ -33,20 +66,35 @@ class AuctionSearch
     @siblings_type || child_configuration.try(:siblings_type)
   end
 
-  def child_configuration
-    if child_configuration_id.present?
-      @child_configuration = ChildConfiguration.find(child_configuration_id)
-    elsif @siblings_type and @child_genders
-      @child_configuration = ChildConfiguration.where(siblings_type: params[:siblings_type], genders: params[:genders]).first
-    end
-    @child_configuration
+  def needs_siblings_type?
+    !(child_configuration_id || siblings_type)
   end
 
   def auctions
     composed_scope = Auction.active
     composed_scope = composed_scope.joins(:child_configurations).where('auction_child_configurations.child_configuration_id' => possible_child_configurations)
 
-    if search_term
+    if brand_ids.present?
+      composed_scope = composed_scope.where(brand_id: brand_ids)
+    end
+
+    if clothing_condition_id.present?
+      composed_scope = composed_scope.where(clothing_condition_id: clothing_condition_id)
+    end
+
+    if clothing_size_ids.present?
+      composed_scope = composed_scope.joins(:clothing_sizes).where('auction_clothing_sizes.clothing_size_id' => clothing_size_ids)
+    end
+
+    if clothing_type_ids.present?
+      composed_scope = composed_scope.where(clothing_type_id: clothing_type_ids)
+    end
+
+    if season_ids.present?
+      composed_scope = composed_scope.where(season_id: season_ids)
+    end
+
+    if search_term.present?
       q = "%#{search_term.gsub(' ', '%').downcase}%"
       composed_scope = composed_scope.joins(:brand).joins(:user).where("LOWER(brands.name) LIKE :q OR LOWER(title) LIKE :q OR LOWER(description) LIKE :q OR LOWER(users.first_name) LIKE :q OR LOWER(users.last_name) LIKE :q", :q => q)
     end

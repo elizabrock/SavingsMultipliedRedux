@@ -1,14 +1,26 @@
-= simple_form_for @auction_search, url: auctions_path, html: { method: :get } do |f|
-  - if auction_search.needs_siblings_type?
-    %h2 I'm shopping for:
+#auction_search_sidebar
+  = simple_form_for @auction_search, url: auctions_path, html: { method: :get } do |f|
+    - if auction_search.needs_siblings_type?
+      %h2 I'm shopping for:
+      %hr
+      - auction_search.possible_child_configurations.collect(&:siblings_type).uniq.each do |siblings_type|
+        %li.children
+          = link_to siblings_type, auctions_path(auction_search.to_hash(siblings_type: siblings_type))
+    - elsif auction_search.needs_child_genders?
+      %h2 I'm shopping for:
+      %hr
+      - auction_search.possible_child_configurations.each do |child_configuration|
+        %li.children
+          = link_to auctions_path(auction_search.to_hash(child_configuration_id: child_configuration.id)), title: child_configuration.genders do
+            = render child_configuration
+    %h2 Limit your search:
     %hr
-    - auction_search.possible_child_configurations.collect(&:siblings_type).uniq.each do |siblings_type|
-      %li.children
-        = link_to siblings_type, auctions_path(auction_search.to_hash(siblings_type: siblings_type))
-  - elsif auction_search.needs_child_genders?
-    %h2 I'm shopping for:
-    %hr
-    - auction_search.possible_child_configurations.each do |child_configuration|
-      %li.children
-        = link_to auctions_path(auction_search.to_hash(child_configuration_id: child_configuration.id)), title: child_configuration.genders do
-          = render child_configuration
+    = f.input :search_term
+    - unless auction_search.needs_child_genders?
+      = f.input :child_configuration_id, as: :hidden
+      = f.input :clothing_condition_id, collection: ClothingCondition.all
+      = f.input :brand_ids, as: :check_boxes, collection: Brand.all
+      = f.input :clothing_size_ids, as: :check_boxes, collection: ClothingSize.all
+      = f.input :clothing_type_ids, as: :check_boxes, collection: ClothingType.all
+      = f.input :season_ids, as: :check_boxes, collection: Season.all
+    = f.submit "Search"

@@ -4,12 +4,13 @@
     %li= link_to @auction_search.siblings_type, auctions_path( @auction_search.to_hash )
   - if @auction_search.child_configuration
     %li
-      = link_to auctions_path do
+      = link_to auctions_path(@auction_search.to_hash), title: @auction_search.child_configuration.genders do
         = render @auction_search.child_configuration
 
 = render @auction_search
 
 - if @auctions.empty?
+  .alert No auctions found with this criteria.
 - else
   #auctions
     = render @auctions
