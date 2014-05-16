@@ -1,3 +1,12 @@
-%h1 Home
+.left-column
+  %h2 We're making one aspect of life easier for parents of multiples:
 
-%p This is where the homepage content would go.
+  %h3 buying and selling gently used sets of clothes!
+
+  = link_to "Shop Now!", auctions_path, class: "button primary"
+
+.right-column
+  #child_images
+    = image_tag "children/twins.jpg"
+    = image_tag "children/triplets.jpg"
+    = image_tag "children/quads.jpg"

@@ -1,0 +1,31 @@
+header, footer {
+  ul {
+    li {
+      display: inline;
+    }
+  }
+}
+
+#content {
+  @include grid-row();
+
+  $left-column-size: 6;
+  $right-column-size: 12 - $left-column-size;
+  .left-column {
+    @include grid-column($left-column-size);
+  }
+  .right-column {
+    @include grid-column($right-column-size);
+  }
+}
+
+$small-range: (0em, 30em); /* 0, 640px */
+$small-only: "#{$screen} and (max-width: 40em)" !default;
+
+@media #{$small-only} {
+  #content {
+    .left-column, .right-column {
+      @include grid-column(12);
+    }
+  }
+}
