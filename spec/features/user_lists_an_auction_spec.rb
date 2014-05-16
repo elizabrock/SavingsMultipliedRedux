@@ -21,12 +21,7 @@ feature "User lists an auction" do
     Fabricate(:clothing_type, name: "jackets")
     Fabricate(:clothing_type, name: "full outfits")
     Fabricate(:brand, name: "Janie & Jack")
-    # Timecop.travel(2010, 10, 17, 15, 45)
   end
-
-  # after do
-  #   Timecop.return
-  # end
 
   scenario "A signed out user is redirect upon logging in" do
     visit root_path
