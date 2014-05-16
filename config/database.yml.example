@@ -81,5 +81,3 @@ test:
 production:
   <<: *default
   database: SavingsMultpliedRedux_production
-  username: SavingsMultpliedRedux
-  password: <%= ENV['SAVINGSMULTPLIEDREDUX_DATABASE_PASSWORD'] %>
