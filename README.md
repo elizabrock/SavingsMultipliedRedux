@@ -23,4 +23,5 @@ Setup
 * Services (job queues, cache servers, search engines, etc.)
     * N/A
 * Deployment instructions
-    * N/A yet
+    * `heroku create <application_name>`
+    * `git push heroku master`
