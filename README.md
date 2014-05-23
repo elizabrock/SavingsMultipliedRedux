@@ -25,3 +25,4 @@ Setup
 * Deployment instructions
     * `heroku create <application_name>`
     * `git push heroku master`
+    * `heroku run rake db:migrate`
