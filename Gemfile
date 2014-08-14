@@ -2,9 +2,10 @@ ruby '2.1.1'
 #ruby-gemset=savingsmultplied
 source 'https://rubygems.org'
 
-gem 'activeadmin', github: 'gregbell/active_admin'
+gem 'activeadmin', github: 'activeadmin/active_admin'
 gem 'carrierwave'
 gem 'coffee-rails', '~> 4.0.0'
+gem 'devise', '~> 3.2.4'
 gem 'fabrication'
 gem 'haml-rails'
 gem 'jbuilder', '~> 2.0'
