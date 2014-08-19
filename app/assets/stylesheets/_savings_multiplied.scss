@@ -6,6 +6,42 @@ header, footer {
   }
 }
 
+body {
+  background: #D5F1F0;
+}
+
+$header_secondary_color: #2a959e;
+
+ul#devise_navigation {
+  margin-top: 2em;
+  margin-right: 2em;
+  float: right;
+  list-style-type: none;
+  li {
+    display: inline;
+    &:first-child {
+      padding-right: 0.75em;
+      margin-right: 0.75em;
+      border-right: 2px solid $header_secondary_color;
+    }
+  }
+  &, a {
+    color: $header_secondary_color;
+  }
+}
+
+header, #content {
+  clear: right;
+  background: #FFFFFF;
+}
+
+ul#main_navigation {
+  background: #F3C4CD;
+  &, a {
+    color: #6f1549;
+  }
+}
+
 #content {
   @include grid-row();
 
