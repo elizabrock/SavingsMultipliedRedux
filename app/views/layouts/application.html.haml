@@ -28,18 +28,19 @@
         %li= link_to("sign in", new_user_session_path)
         %li= link_to("sign up", new_user_registration_path)
     %header
-      .left-column
-        %h1.title
-          %span.full-title SavingsMultiplied
-          = image_tag "savings-multiplied-logo.png"
-      .right-column
-        %nav#pages
-          %ul
-            %li= link_to "About", "/pages/about"
-            %li= link_to "Contact", "/pages/contact"
-            %li= link_to "Blog", "/pages/blog"
-            %li= link_to "Press", "/pages/press"
-        %p.tagline where parents of multiples save, sell &amp; share
+      %section
+        .left-column
+          %h1.title
+            %span.full-title SavingsMultiplied
+            = image_tag "savings-multiplied-logo.png"
+        .right-column
+          %nav#pages
+            %ul
+              %li= link_to "About", "/pages/about"
+              %li= link_to "Contact", "/pages/contact"
+              %li= link_to "Blog", "/pages/blog"
+              %li= link_to "Press", "/pages/press"
+          %p.tagline where parents of multiples save, sell &amp; share
     %nav#main
       %ul
         %li= link_to "Buy", auctions_path

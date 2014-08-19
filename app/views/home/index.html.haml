@@ -3,10 +3,22 @@
 
   %h3 buying and selling gently used sets of clothes!
 
-  = link_to "Shop Now!", auctions_path, class: "button primary"
+  .hr= link_to "Shop Now!", auctions_path, class: "call-to-action"
+
+  = image_tag "homepage/tree.png", class: "callout"
+  %p Our goal is to take the hassle our of consigning, so listing your items is a piece of cake. Shop from other parents of multiples and find coordinating (or not!) sets of clothes for your kids in a matter of minutes.
+
 
 .right-column
   #child_images
     = image_tag "children/twins.jpg"
     = image_tag "children/triplets.jpg"
     = image_tag "children/quads.jpg"
+
+%hr
+
+%ul.callouts
+  %li= image_tag "homepage/facebook_callout.png"
+  %li= image_tag "homepage/twitter_callout.png"
+  %li= image_tag "homepage/message_board_callout.png"
+  %li= image_tag "homepage/special_offers_callout.png"

@@ -8,6 +8,31 @@
 $small-range: (0em, 30em); /* 0, 640px */
 $small-only: "#{$screen} and (max-width: 40em)" !default;
 
+$page-radius: 30px;
+
+hr, .hr {
+  background: transparent image-url('homepage/dotted_line_44x9.png') repeat-x center center;
+  min-height: 9px;
+  border: none;
+  text-align: right;
+  padding: 2em 0;
+  clear: both;
+}
+
+h2 {
+  color: $success-color;
+}
+
+h3 {
+  color: $primary-color;
+  font-family: $body-font-family;
+}
+
+.call-to-action {
+  @include button($bg: $alert-color, $padding: $button-sml, $radius: 25px);
+  margin: auto 1.5em;
+}
+
 header, footer {
   ul {
     li {
@@ -16,9 +41,32 @@ header, footer {
   }
 }
 
+$header-background: #D5F1F0;
+
+footer {
+  margin-top: 1em;
+  &, a {
+    color: $header-background;
+  }
+  li {
+    border-left: 2px solid $header-background;
+    padding: 0 0.5em;
+    &:first-child {
+      border: none;
+    }
+  }
+  text-align: center;
+}
+
 body {
-  background: #D5F1F0;
+  background: #74CBD1;
   padding: 2em;
+}
+
+header {
+  background: #D5F1F0;
+  margin: -2em -2em 0 -2em;
+  padding: 2em 2em 0 2em;
 }
 
 $header_secondary_color: #2a959e;
@@ -40,8 +88,8 @@ ul#devise_navigation {
   }
 }
 
-header {
-  @include side-radius(top, 30px);
+header section {
+  @include side-radius(top, $page-radius);
   h1.title {
     margin-top: -1em;
     span.full-title { display: none; }
@@ -63,13 +111,13 @@ header {
         @include button($bg: $primary-color, $padding: $button-sml, $full-width: true, $radius: 25px);
       }
       &:nth-child(2) a {
-        @include button($bg: #81AE28, $padding: $button-sml, $full-width: true, $radius: 25px);
+        @include button($bg: $success-color, $padding: $button-sml, $full-width: true, $radius: 25px);
       }
       &:nth-child(3) a {
-        @include button($bg: #642783, $padding: $button-sml, $full-width: true, $radius: 25px);
+        @include button($bg: $secondary-color, $padding: $button-sml, $full-width: true, $radius: 25px);
       }
       &:nth-child(4) a {
-        @include button($bg: #E80081, $padding: $button-sml, $full-width: true, $radius: 25px);
+        @include button($bg: $alert-color, $padding: $button-sml, $full-width: true, $radius: 25px);
       }
       &:nth-child(n) a {
         font-weight: 400;
@@ -129,13 +177,13 @@ nav#main {
   }
 }
 
-#content, header {
+#content, header section {
   clear: right;
   background: #FFFFFF;
   @include grid-row();
 }
 
-header {
+header section {
   $left-column-size: 5;
   $right-column-size: 12 - $left-column-size;
   .left-column {
@@ -147,6 +195,9 @@ header {
 }
 
 #content {
+  @include side-radius(bottom, $page-radius);
+  padding: 2em 0;
+
   $left-column-size: 6;
   $right-column-size: 12 - $left-column-size;
   .left-column {
@@ -158,7 +209,7 @@ header {
 }
 
 @media #{$small-only} {
-  header, #content {
+  header section, #content {
     nav#pages { margin-top: 0; }
     .left-column, .right-column {
       @include grid-column(12);
@@ -166,16 +217,18 @@ header {
   }
 }
 
-#content {
-  @include grid-row();
+.callout {
+  float: left;
+}
 
-  $left-column-size: 4;
-  $right-column-size: 12 - $left-column-size;
-  #auction_search_sidebar {
-    @include grid-column($left-column-size);
-  }
-  #auctions {
-    @include grid-column($right-column-size);
+ul.callouts {
+  @include block-grid($per-row: 4);
+  text-align: center;
+}
+
+@media #{$small-only} {
+  ul.callouts {
+    @include block-grid($per-row: 2);
   }
 }
 
