@@ -1,3 +1,13 @@
+@mixin placeholder-color($color: #000) {
+  ::-webkit-input-placeholder{ color: $color; }
+  ::-moz-placeholder{ color: $color; }
+  :-ms-input-placeholder{ color: $color; }
+  input:-moz-placeholder{ color: $color; }
+}
+
+$small-range: (0em, 30em); /* 0, 640px */
+$small-only: "#{$screen} and (max-width: 40em)" !default;
+
 header, footer {
   ul {
     li {
@@ -15,9 +25,10 @@ $header_secondary_color: #2a959e;
 
 ul#devise_navigation {
   float: right;
-  list-style-type: none;
+  @include inline-list;
+  margin-right: 2.25em;
   li {
-    display: inline;
+    margin-left: 0;
     &:first-child {
       padding-right: 0.75em;
       margin-right: 0.75em;
@@ -70,8 +81,51 @@ header {
 
 nav#main {
   background: #F3C4CD;
+  padding: 0.5em 0;
+  margin: 0 -2em 0 -2em;
+  ul {
+    @include grid-row();
+    list-style-type: none;
+    font-family: "cooper-black-std";
+    font-weight: bold;
+    li {
+      font-size: 125%;
+      text-align: center;
+      &:nth-child(5) { @include grid-column(1.9); }
+      &:nth-child(6) { @include grid-column(2.2); }
+      &:nth-child(1), &:nth-child(2), &:nth-child(4) { @include grid-column(1.8) }
+      &:nth-child(3){ @include grid-column(2.5) }
+    }
+  }
+  ul, form, input { margin-bottom: 0; }
+  form.new_auction_search {
+    @include placeholder-color(#f5cbd3);
+    input.string {
+      @include radius(25px);
+      border: 2px solid #e399a7;
+      color: #f5cbd3;
+      font-family: $body-font-family;
+      font-size: 75%;
+      padding: 0.25em;
+      background: white image-url('search.gif') no-repeat 5px center;
+      padding-left: 30px;
+    }
+    label, input[type=submit] {
+      display: none;
+    }
+  }
   &, a {
     color: #6f1549;
+  }
+}
+
+@media #{$small-only} {
+  nav#main ul {
+    padding: 0 1.8em;
+    li:nth-child(n) {
+      width: auto;
+      display: inline-block;
+    }
   }
 }
 
@@ -102,9 +156,6 @@ header {
     @include grid-column($right-column-size);
   }
 }
-
-$small-range: (0em, 30em); /* 0, 640px */
-$small-only: "#{$screen} and (max-width: 40em)" !default;
 
 @media #{$small-only} {
   header, #content {

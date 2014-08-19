@@ -1,3 +1,3 @@
 = simple_form_for @auction_search, url: auctions_path, html: { method: :get } do |f|
-  = f.input :search_term
+  = f.input :search_term, placeholder: "search"
   = f.submit "Search"

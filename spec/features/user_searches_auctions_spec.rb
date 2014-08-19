@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-feature "User searches auctions" do
+feature "User searches auctions", js: true do
 # In order to find auctions that I am interested in
 # As a logged in user
 # I want to search auctions
@@ -29,9 +29,9 @@ feature "User searches auctions" do
     active_auctions
     visit '/'
     click_link "Buy"
-    within "header" do
-      fill_in "Search", with: "foo"
-      click_button "Search"
+    within "nav#main" do
+      search_field = find(:fillable_field, "auction_search_search_term")
+      search_field.native.send_keys("foo\n")
     end
 
     page.should have_link "bg twin clothes foo"
@@ -55,13 +55,13 @@ feature "User searches auctions" do
     page.should_not have_content "bg sibling clothes bar"
   end
 
-  scenario "results with a auction in multiple categories are shown only once" do
+  scenario "results with an auction in multiple categories shows it only once" do
     active_auctions
     visit '/'
     click_link "Buy"
-    within "header" do
-      fill_in "Search", with: "foo"
-      click_button "Search"
+    within "nav#main" do
+      search_field = find(:fillable_field, "auction_search_search_term")
+      search_field.native.send_keys("foo\n")
     end
     # This causes an error if it appears more than once:
     find("a", text: "gg sibling clothes foo")
