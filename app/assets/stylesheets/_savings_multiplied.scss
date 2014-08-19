@@ -8,13 +8,12 @@ header, footer {
 
 body {
   background: #D5F1F0;
+  padding: 2em;
 }
 
 $header_secondary_color: #2a959e;
 
 ul#devise_navigation {
-  margin-top: 2em;
-  margin-right: 2em;
   float: right;
   list-style-type: none;
   li {
@@ -30,21 +29,70 @@ ul#devise_navigation {
   }
 }
 
-header, #content {
-  clear: right;
-  background: #FFFFFF;
+header {
+  @include side-radius(top, 30px);
+  h1.title {
+    margin-top: -1em;
+    span.full-title { display: none; }
+  }
+  .tagline {
+    color: $primary-color;
+    font-family: "cooper-black-std";
+    font-size: 125%;
+    font-weight: bold;
+  }
+  nav#pages{
+    margin-top: 3em;
+    ul { margin-bottom: 0; }
+    ul li {
+      display: inline-block;
+      width: 22%;
+      margin-right: 2%;
+      &:nth-child(1) a {
+        @include button($bg: $primary-color, $padding: $button-sml, $full-width: true, $radius: 25px);
+      }
+      &:nth-child(2) a {
+        @include button($bg: #81AE28, $padding: $button-sml, $full-width: true, $radius: 25px);
+      }
+      &:nth-child(3) a {
+        @include button($bg: #642783, $padding: $button-sml, $full-width: true, $radius: 25px);
+      }
+      &:nth-child(4) a {
+        @include button($bg: #E80081, $padding: $button-sml, $full-width: true, $radius: 25px);
+      }
+      &:nth-child(n) a {
+        font-weight: 400;
+        margin-bottom: 0.4em;
+      }
+    }
+  }
 }
 
-ul#main_navigation {
+nav#main {
   background: #F3C4CD;
   &, a {
     color: #6f1549;
   }
 }
 
-#content {
+#content, header {
+  clear: right;
+  background: #FFFFFF;
   @include grid-row();
+}
 
+header {
+  $left-column-size: 5;
+  $right-column-size: 12 - $left-column-size;
+  .left-column {
+    @include grid-column($left-column-size);
+  }
+  .right-column {
+    @include grid-column($right-column-size);
+  }
+}
+
+#content {
   $left-column-size: 6;
   $right-column-size: 12 - $left-column-size;
   .left-column {
@@ -59,7 +107,8 @@ $small-range: (0em, 30em); /* 0, 640px */
 $small-only: "#{$screen} and (max-width: 40em)" !default;
 
 @media #{$small-only} {
-  #content {
+  header, #content {
+    nav#pages { margin-top: 0; }
     .left-column, .right-column {
       @include grid-column(12);
     }

@@ -14,6 +14,8 @@
     / <meta http-equiv="X-UA-Compatible" content="IE=7" />
     / Set the viewport width to device width for mobile
     %meta{ content: "width=device-width, initial-scale=1.0", name: "viewport"}/
+    <script type="text/javascript" src="//use.typekit.net/yny8kza.js"></script>
+    <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
     = csrf_meta_tags
   %body
     %ul#devise_navigation
@@ -26,14 +28,20 @@
         %li= link_to("sign in", new_user_session_path)
         %li= link_to("sign up", new_user_registration_path)
     %header
-      %h1= image_tag "savings-multiplied-logo.png"
-      %ul#page_navigation
-        %li= link_to "About", "/pages/about"
-        %li= link_to "Contact", "/pages/contact"
-        %li= link_to "Blog", "/pages/blog"
-        %li= link_to "Press", "/pages/press"
-      %h2 where parents of multiples save, sell &amp; share
-      %ul#main_navigation
+      .left-column
+        %h1.title
+          %span.full-title SavingsMultiplied
+          = image_tag "savings-multiplied-logo.png"
+      .right-column
+        %nav#pages
+          %ul
+            %li= link_to "About", "/pages/about"
+            %li= link_to "Contact", "/pages/contact"
+            %li= link_to "Blog", "/pages/blog"
+            %li= link_to "Press", "/pages/press"
+        %p.tagline where parents of multiples save, sell &amp; share
+    %nav#main
+      %ul
         %li= link_to "Buy", auctions_path
         %li= link_to "Sell", new_auction_path
         %li= link_to "How it Works", "/pages/howitworks"
