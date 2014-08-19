@@ -11,7 +11,7 @@ module Features
         visit new_user_session_path unless current_path == new_user_session_path
         fill_in 'Email', with: user.email
         fill_in 'Password', with: "myawfulpassword"
-        click_button 'Sign in'
+        click_button 'Log in'
       end
       page.should have_content("Signed in successfully.")
       user

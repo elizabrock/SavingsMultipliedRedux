@@ -62,7 +62,7 @@ feature "User Edits Profile" do
     click_link "sign out"
     fill_in "Email", with: "ally@mcmarried.example.com"
     fill_in "Password", with: "aBetterPassw0rd"
-    click_button "Sign in"
+    click_button "Log in"
     page.should have_content("Signed in successfully.")
   end
   scenario "trying to change password with an invalid password" do
@@ -76,7 +76,7 @@ feature "User Edits Profile" do
     click_link "sign out"
     fill_in "Email", with: "ally@mcmarried.example.com"
     fill_in "Password", with: "aBetterPassw0rd"
-    click_button "Sign in"
+    click_button "Log in"
     page.should have_content("Invalid email or password.")
   end
   scenario "edit link isn't shown on others' profiles" do
